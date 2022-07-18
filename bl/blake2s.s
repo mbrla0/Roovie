@@ -91,7 +91,7 @@ _blake2s_init_copy_key_prefix:
 	sb x28, CTX_INPUT_BUFFER(x7)
 
 	addi x6, x6, 1
-	bltu x6, x13, _blake2s_init_copy_key
+	bltu x6, x13, _blake2s_init_copy_key_prefix
 
 	li x6, 64
 	sw x6, CTX_INPUT_INDEX(x2)
@@ -103,7 +103,7 @@ _blake2s_init_no_key:
 	mv x22, x11
 _blake2s_consume_input_not_empty:
 	lw x18, CTX_INPUT_INDEX(x2)
-	bltu x18, x19, _blake2_consume_buffer_not_full
+	bltu x18, x19, _blake2s_consume_buffer_not_full
 
 	lw x7, CTX_INPUT_INDEX(x2)
 	lw x18, CTX_COUNTERS_LOW(x2)
@@ -111,7 +111,7 @@ _blake2s_consume_input_not_empty:
 	add x18, x18, x7
 	sw x18, CTX_COUNTERS_LOW(x2)
 
-	bgeu x18, x7, _blake2_consume_low_counter_didnt_overflow
+	bgeu x18, x7, _blake2s_consume_low_counter_didnt_overflow
 
 	lw x7, CTX_COUNTERS_HIGH(x2)
 	addi x7, x7, 1
@@ -143,7 +143,7 @@ _blake2s_consume_buffer_not_full:
 	add x18, x18, x7
 	sw x18, CTX_COUNTERS_LOW(x2)
 
-	bgeu x18, x7, _blake2_consume_low_counter_didnt_overflow
+	bgeu x18, x7, _blake2s_consume_low_counter_didnt_overflow
 
 	lw x7, CTX_COUNTERS_HIGH(x2)
 	addi x7, x7, 1
