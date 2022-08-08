@@ -1,0 +1,22 @@
+{
+	"data-layout": "e-m:e-p:32:32-i64:64-n32-S128",
+	"llvm-target": "riscv32",
+	"arch": "riscv32",
+	"target-endian": "little",
+	"executables": true,
+	"dynamic-linking": false,
+	"atomic-cas": false,
+	"singlethread": true,
+	"no-default-libraries": true,
+	"max-atomic-width": 0,
+	"relocation-model": "static",
+	"target-pointer-width": "32",
+	"target-c-int-width": "32",
+	"cpu": "generic-rv32",
+	"os": "roovie",
+	"linker": "rust-lld",
+	"linker-flavor": "ld.lld",
+	"disable-redzone": true,
+	"panic-strategy": "abort",
+	"features": "+m,+zfinx"
+}

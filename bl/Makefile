@@ -20,4 +20,4 @@ bl.elf: ../build/riscv32-neorv32-bl.ld $(OBJS)
 	$(AS) -c -o $@ $<
 
 clean:
-	rm -rf *.o bl.vhd bl.bin bl.elf
+	rm -rf $(OBJS) bl.vhd bl.bin bl.elf

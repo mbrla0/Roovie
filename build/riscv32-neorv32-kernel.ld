@@ -5,6 +5,9 @@ MEMORY
 
 SECTIONS 
 {
+	/* Location of the platform information structure in memory. */
+	system_table = 0xa8000000;
+
 	_sdram_base = 0xa0000000;
 	_sdram_size = 0x08000000;
 	_ssram_base = 0xa8000000;
@@ -16,8 +19,12 @@ SECTIONS
 		*(.entry*);
 		*(.text*);
 		*(.rodata*);
+
 		*(.data*);
+		bss_start = .;
 		*(.bss*);
+		bss_end = .;
+
 	} > RAM
 }
 
