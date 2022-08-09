@@ -8,10 +8,6 @@ SECTIONS
 	/* Location of the platform information structure in memory. */
 	system_table = 0xa8000000;
 
-	_sdram_base = 0xa0000000;
-	_sdram_size = 0x08000000;
-	_ssram_base = 0xa8000000;
-	_ssram_size = 0x00080000;
 	_frame_base = 0xa8000000;
 	_frame_size = 0x00038400;
 
@@ -24,7 +20,7 @@ SECTIONS
 		bss_start = .;
 		*(.bss*);
 		bss_end = .;
-
+		kernel_end = .;
 	} > RAM
 }
 

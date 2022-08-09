@@ -29,6 +29,10 @@ clear_bss:
 	bltu x6, x7, clear_bss
 
 	# Transfer control to the Rust side of the kernel.
+	#
+	# The value of x10 it set by the bootloader and points to the beginning of
+	# the system table. It can be thought of as being passed directly by the
+	# bootloader as the first argument to kernel_main.
 	jal kernel_main
 
 	# If the kernel has brought itself up successfully, execution should never

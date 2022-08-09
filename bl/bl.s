@@ -142,6 +142,7 @@ integrity:
 	la x10, msg_seq6
 	jal proc_puts
 
+    la x10, system_table
 	la x11, _load_addr
 	jr x11
 
@@ -320,3 +321,5 @@ msg_seq6:	.asciz "Booting!\r\n\r\n"
 msg_err0:	.asciz "Integrity verification failed!\r\nHalting.\r\n"
 msg_zero:	.asciz "0"
 msg_head:	.asciz "\r\nFurry's Horrible Terrible Good For Nothing Bootloader TM\r\nIt better not bounce or you're a dead motherfucker (C) 2077 Furry do BCC\r\n\r\n"
+system_table:
+    .incbin "systable.bin"

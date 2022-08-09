@@ -1,0 +1,23 @@
+
+[loader]
+kernel = 0xa000_0000
+stack = 0xa807_999c
+
+[[memory.regions]]
+rank = 2
+offset = 0xa000_0000
+length = 0x0800_0000
+
+[[memory.regions]]
+rank = 1
+offset = 0xa800_0000
+length = 0x0008_0000
+
+[[devices]]
+class = "neorv32-uart"
+base = 0xffff_ffa0
+
+[[devices]]
+class = "neorv32-gpio"
+base = 0xffff_ffc0
+
