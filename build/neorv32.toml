@@ -1,7 +1,7 @@
 
 [loader]
 kernel = 0xa000_0000
-stack = 0xa807_999c
+stack = 0xa807_fffc
 
 [[memory.regions]]
 rank = 2

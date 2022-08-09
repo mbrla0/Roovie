@@ -20,6 +20,7 @@ with open(sys.argv[1], "r") as infile:
 
     # Build the memory regions section.
     section_memory_regions = b""
+    memory_region_count = len(table["memory"]["regions"])
     for region in table["memory"]["regions"]:
         section_memory_regions += struct.pack(
             "<III",
@@ -29,6 +30,7 @@ with open(sys.argv[1], "r") as infile:
 
     # Build the devices section.
     section_devices = b""
+    device_count = len(table["devices"])
     for device in table["devices"]:
         string_offset = len(section_strings)
         section_strings += device["class"].encode("utf-8") + b"\0"
@@ -52,9 +54,11 @@ with open(sys.argv[1], "r") as infile:
 
         outfile.seek(0)
         outfile.write(struct.pack(
-            "<IIII",
+            "<IIIIII",
             offset0,
+            memory_region_count,
             offset1,
+            device_count,
             offset2,
             offset3
         ))
