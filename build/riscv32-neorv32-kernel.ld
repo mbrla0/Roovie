@@ -20,7 +20,6 @@ SECTIONS
 		bss_start = .;
 		*(.bss*);
 		bss_end = .;
-		kernel_end = .;
 	} > RAM
 }
 

@@ -11,17 +11,17 @@ sys_procedure_trap_handler_setup:
 	# simply adding to the pointer however many bytes are needed to align the
 	# the base address of the symbol.
 	#
-	la x6, trap_context_blo
+	la x6, trap_context_block
 	srli x6, x6, 2
 	addi x6, x6, 1
 	slli x6, x6, 2
 
-	csrw x6, mscratch
+	csrw mscratch, x6
 
 	# Set up the pointer to the trap handler.
 	la x6, trap_handler
 	srli x6, x6, 2
-	csrw x6, mtvec
+	csrw mtvec, x6
 
 	ret
 

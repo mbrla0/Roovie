@@ -4,14 +4,16 @@ AS=../tools/riscv32-elf-as
 LD=../tools/riscv32-elf-ld
 OC=../tools/riscv32-elf-objcopy
 
+AFLAGS=-march=rv32im -mabi=ilp32
+
 OBJS=sys/start.o sys/trap.o
 TARGET=../build/riscv32-neorv32-kernel.json
 
 ifeq ($(RELEASE),1)
-_TARGET_SUBDIR=release
+_TARGET_SUBDIR=debug
 _RELEASE_MODE_STRING=
 else
-_TARGET_SUBDIR=debug
+_TARGET_SUBDIR=release
 _RELEASE_MODE_STRING=--release
 endif
 
@@ -29,7 +31,7 @@ kernel: $(TARGET)
 		-Zbuild-std-features=compiler-builtins-mem
 
 .s.o:
-	$(AS) -c -o $@ $<
+	$(AS) $(AFLAGS) -c -o $@ $<
 
 clean:
 	rm -rf kernel.bin $(OBJS)

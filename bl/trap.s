@@ -37,7 +37,7 @@ halt:
 	j halt
 
 .section .rodata
-msg0: .asciz "!!! The bootloader raised a CPU trap"
+msg0: .asciz "!!! The system raised a CPU trap"
 msg1: .asciz "\r\nReason "
 msg2: .asciz "\r\nPC = "
 msg3: .asciz "\r\nHalting\r\n"

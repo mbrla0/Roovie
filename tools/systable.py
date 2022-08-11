@@ -18,6 +18,15 @@ with open(sys.argv[1], "r") as infile:
         table["loader"]["kernel"],
         table["loader"]["stack"])
 
+    # Build the memory section.
+    pmp = (0, 0)
+    if "memory" in table and "pmp" in table["memory"]:
+        pmp = (table["memory"]["pmp"]["regions"], table["memory"]["pmp"]["modes"])
+    section_memory = struct.pack(
+        "<II",
+        pmp[0],
+        pmp[1])
+
     # Build the memory regions section.
     section_memory_regions = b""
     memory_region_count = len(table["memory"]["regions"])
@@ -42,23 +51,26 @@ with open(sys.argv[1], "r") as infile:
 
 
     with open(sys.argv[2], "wb") as outfile:
-        outfile.write(b"\0" * 16)
+        outfile.write(b"\0" * 20)
         offset0 = outfile.tell()
         outfile.write(section_loader)
         offset1 = outfile.tell()
         outfile.write(section_memory_regions)
         offset2 = outfile.tell()
         outfile.write(section_devices)
+        offset4 = outfile.tell()
+        outfile.write(section_memory)
         offset3 = outfile.tell()
         outfile.write(section_strings)
 
         outfile.seek(0)
         outfile.write(struct.pack(
-            "<IIIIII",
+            "<IIIIIII",
             offset0,
             memory_region_count,
             offset1,
             device_count,
             offset2,
-            offset3
+            offset3,
+            offset4
         ))

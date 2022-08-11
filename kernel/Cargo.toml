@@ -3,5 +3,13 @@ name = "kernel"
 version = "0.1.0"
 edition = "2021"
 
+[dependencies]
+arrayvec = { version = "0", default-features = false }
+
 [lib]
 crate-type = ["staticlib"]
+
+[profile.release]
+lto = "fat"
+codegen-units = 1
+opt-level = "z"

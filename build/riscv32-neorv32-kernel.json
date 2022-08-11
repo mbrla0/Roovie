@@ -18,5 +18,5 @@
 	"linker-flavor": "ld.lld",
 	"disable-redzone": true,
 	"panic-strategy": "abort",
-	"features": "+m,+zfinx"
+	"features": "+m"
 }

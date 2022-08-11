@@ -1,7 +1,10 @@
-
 [loader]
 kernel = 0xa000_0000
 stack = 0xa807_fffc
+
+[memory.pmp]
+regions = 16
+modes = 0b00_00_00_00_00_00_00_00_00_00_00_00_00_00_00_01
 
 [[memory.regions]]
 rank = 2
@@ -20,4 +23,3 @@ base = 0xffff_ffa0
 [[devices]]
 class = "neorv32-gpio"
 base = 0xffff_ffc0
-

@@ -4,6 +4,8 @@ OC=../tools/riscv32-elf-objcopy
 CO=../tools/conv.py
 ST=../tools/systable.py
 
+AFLAGS=-march=rv32im -mabi=ilp32
+
 OBJS=bl.o blake2s.o trap.o
 
 all: bl.bin bl.vhd
@@ -18,13 +20,13 @@ bl.elf: ../build/riscv32-neorv32-bl.ld $(OBJS)
 	$(LD) -T $< $(OBJS) -o $@
 
 bl.o: bl.s systable.bin
-	$(AS) -c -o $@ $<
+	$(AS) $(AFLAGS) -c -o $@ $<
 
-systable.bin: ../build/neorv32.toml
+systable.bin: ../build/neorv32.toml $(ST)
 	$(ST) $< $@
 
 .s.o:
-	$(AS) -c -o $@ $<
+	$(AS) $(AFLAGS) -c -o $@ $<
 
 clean:
 	rm -rf $(OBJS) systable.bin bl.vhd bl.bin bl.elf
