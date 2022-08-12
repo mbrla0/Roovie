@@ -5,6 +5,7 @@ edition = "2021"
 
 [dependencies]
 arrayvec = { version = "0", default-features = false }
+log = "0"
 
 [lib]
 crate-type = ["staticlib"]
@@ -13,3 +14,6 @@ crate-type = ["staticlib"]
 lto = "fat"
 codegen-units = 1
 opt-level = "z"
+
+[patch.crates-io]
+log = { path = "../opt/log" }

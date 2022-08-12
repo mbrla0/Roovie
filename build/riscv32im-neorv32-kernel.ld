@@ -12,14 +12,18 @@ SECTIONS
 	_frame_size = 0x00038400;
 
 	.RAM : {
+		kernel_image_ro_offset = .;
 		*(.entry*);
 		*(.text*);
 		*(.rodata*);
+		kernel_image_ro_size = . - kernel_image_ro_offset;
 
+		kernel_image_rw_offset = .;
 		*(.data*);
 		bss_start = .;
 		*(.bss*);
 		bss_end = .;
+		kernel_image_rw_size = . - kernel_image_rw_offset;
 	} > RAM
 }
 

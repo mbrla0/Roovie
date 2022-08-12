@@ -16,7 +16,7 @@ bl.vhd: bl.bin
 bl.bin: bl.elf
 	$(OC) $< --output-format binary $@
 
-bl.elf: ../build/riscv32-neorv32-bl.ld $(OBJS)
+bl.elf: ../build/riscv32im-neorv32-bl.ld $(OBJS)
 	$(LD) -T $< $(OBJS) -o $@
 
 bl.o: bl.s systable.bin

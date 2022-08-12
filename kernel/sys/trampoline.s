@@ -12,5 +12,17 @@
 .section .text
 	.global sys_procedure_stack_jump
 sys_procedure_stack_jump:
+	# Save the arguments to this function call.
 	mv x2, x10
-	jalr x0, 0(x11)
+	mv x6, x11
+
+	# Move any potential variadic argument to the function call into its
+	# respective target argument register.
+	mv x10, x12
+	mv x11, x13
+	mv x12, x14
+	mv x13, x15
+	mv x14, x16
+	mv x15, x17
+
+	jalr x0, 0(x6)
